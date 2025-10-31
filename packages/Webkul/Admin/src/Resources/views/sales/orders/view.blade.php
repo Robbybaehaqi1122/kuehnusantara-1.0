@@ -53,7 +53,6 @@
             @if (
                 $order->canInvoice()
                 && bouncer()->hasPermission('sales.invoices.create')
-                && $order->payment->method !== 'paypal_standard'
             )
                 @include('admin::sales.invoices.create')
             @endif

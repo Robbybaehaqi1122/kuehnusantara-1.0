@@ -101,7 +101,6 @@ class ComposerStaticInit2f992bd3a65209139a1efcb24489d967
             'Webkul\\Sales\\' => 13,
             'Webkul\\Rule\\' => 12,
             'Webkul\\Product\\' => 15,
-            'Webkul\\Paypal\\' => 14,
             'Webkul\\Payment\\' => 15,
             'Webkul\\Notification\\' => 20,
             'Webkul\\Marketing\\' => 17,
@@ -179,6 +178,7 @@ class ComposerStaticInit2f992bd3a65209139a1efcb24489d967
             'Spatie\\LaravelPackageTools\\' => 27,
             'Spatie\\Crawler\\' => 15,
             'Spatie\\Browsershot\\' => 19,
+            'SnapBi\\' => 7,
             'Shetabit\\Visitor\\' => 17,
             'Sample\\' => 7,
             'Sabberworm\\CSS\\' => 15,
@@ -237,6 +237,7 @@ class ComposerStaticInit2f992bd3a65209139a1efcb24489d967
             'Mpdf\\' => 5,
             'Monolog\\' => 8,
             'Mockery\\' => 8,
+            'Midtrans\\' => 9,
             'Matrix\\' => 7,
             'Masterminds\\' => 12,
             'Maatwebsite\\Excel\\' => 18,
@@ -429,10 +430,6 @@ class ComposerStaticInit2f992bd3a65209139a1efcb24489d967
         'Webkul\\Product\\' => 
         array (
             0 => __DIR__ . '/../..' . '/packages/Webkul/Product/src',
-        ),
-        'Webkul\\Paypal\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src',
         ),
         'Webkul\\Payment\\' => 
         array (
@@ -706,6 +703,10 @@ class ComposerStaticInit2f992bd3a65209139a1efcb24489d967
         array (
             0 => __DIR__ . '/..' . '/spatie/browsershot/src',
         ),
+        'SnapBi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/midtrans/midtrans-php/SnapBi',
+        ),
         'Shetabit\\Visitor\\' => 
         array (
             0 => __DIR__ . '/..' . '/shetabit/visitor/src',
@@ -878,6 +879,10 @@ class ComposerStaticInit2f992bd3a65209139a1efcb24489d967
         'Mockery\\' => 
         array (
             0 => __DIR__ . '/..' . '/mockery/mockery/library/Mockery',
+        ),
+        'Midtrans\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans',
         ),
         'Matrix\\' => 
         array (
@@ -5374,6 +5379,14 @@ class ComposerStaticInit2f992bd3a65209139a1efcb24489d967
         'Matrix\\Operators\\Multiplication' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operators/Multiplication.php',
         'Matrix\\Operators\\Operator' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operators/Operator.php',
         'Matrix\\Operators\\Subtraction' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operators/Subtraction.php',
+        'Midtrans\\ApiRequestor' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/ApiRequestor.php',
+        'Midtrans\\Config' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Config.php',
+        'Midtrans\\CoreApi' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/CoreApi.php',
+        'Midtrans\\Notification' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Notification.php',
+        'Midtrans\\Sanitizer' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Sanitizer.php',
+        'Midtrans\\Snap' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Snap.php',
+        'Midtrans\\SnapApiRequestor' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/SnapApiRequestor.php',
+        'Midtrans\\Transaction' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Transaction.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
@@ -10083,6 +10096,9 @@ class ComposerStaticInit2f992bd3a65209139a1efcb24489d967
         'Shetabit\\Visitor\\Traits\\Visitable' => __DIR__ . '/..' . '/shetabit/visitor/src/Traits/Visitable.php',
         'Shetabit\\Visitor\\Traits\\Visitor' => __DIR__ . '/..' . '/shetabit/visitor/src/Traits/Visitor.php',
         'Shetabit\\Visitor\\Visitor' => __DIR__ . '/..' . '/shetabit/visitor/src/Visitor.php',
+        'SnapBi\\SnapBi' => __DIR__ . '/..' . '/midtrans/midtrans-php/SnapBi/SnapBi.php',
+        'SnapBi\\SnapBiApiRequestor' => __DIR__ . '/..' . '/midtrans/midtrans-php/SnapBi/SnapBiApiRequestor.php',
+        'SnapBi\\SnapBiConfig' => __DIR__ . '/..' . '/midtrans/midtrans-php/SnapBi/SnapBiConfig.php',
         'Spatie\\Browsershot\\Browsershot' => __DIR__ . '/..' . '/spatie/browsershot/src/Browsershot.php',
         'Spatie\\Browsershot\\ChromiumResult' => __DIR__ . '/..' . '/spatie/browsershot/src/ChromiumResult.php',
         'Spatie\\Browsershot\\Enums\\Polling' => __DIR__ . '/..' . '/spatie/browsershot/src/Enums/Polling.php',
@@ -11993,17 +12009,6 @@ class ComposerStaticInit2f992bd3a65209139a1efcb24489d967
         'Webkul\\Payment\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/packages/Webkul/Payment/src/Providers/EventServiceProvider.php',
         'Webkul\\Payment\\Providers\\ModuleServiceProvider' => __DIR__ . '/../..' . '/packages/Webkul/Payment/src/Providers/ModuleServiceProvider.php',
         'Webkul\\Payment\\Providers\\PaymentServiceProvider' => __DIR__ . '/../..' . '/packages/Webkul/Payment/src/Providers/PaymentServiceProvider.php',
-        'Webkul\\Paypal\\Helpers\\Ipn' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Helpers/Ipn.php',
-        'Webkul\\Paypal\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Http/Controllers/Controller.php',
-        'Webkul\\Paypal\\Http\\Controllers\\SmartButtonController' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Http/Controllers/SmartButtonController.php',
-        'Webkul\\Paypal\\Http\\Controllers\\StandardController' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Http/Controllers/StandardController.php',
-        'Webkul\\Paypal\\Listeners\\Transaction' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Listeners/Transaction.php',
-        'Webkul\\Paypal\\Payment\\Paypal' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Payment/Paypal.php',
-        'Webkul\\Paypal\\Payment\\SmartButton' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Payment/SmartButton.php',
-        'Webkul\\Paypal\\Payment\\Standard' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Payment/Standard.php',
-        'Webkul\\Paypal\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Providers/EventServiceProvider.php',
-        'Webkul\\Paypal\\Providers\\ModuleServiceProvider' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Providers/ModuleServiceProvider.php',
-        'Webkul\\Paypal\\Providers\\PaypalServiceProvider' => __DIR__ . '/../..' . '/packages/Webkul/Paypal/src/Providers/PaypalServiceProvider.php',
         'Webkul\\Product\\Console\\Commands\\Indexer' => __DIR__ . '/../..' . '/packages/Webkul/Product/src/Console/Commands/Indexer.php',
         'Webkul\\Product\\Contracts\\Product' => __DIR__ . '/../..' . '/packages/Webkul/Product/src/Contracts/Product.php',
         'Webkul\\Product\\Contracts\\ProductAttributeValue' => __DIR__ . '/../..' . '/packages/Webkul/Product/src/Contracts/ProductAttributeValue.php',

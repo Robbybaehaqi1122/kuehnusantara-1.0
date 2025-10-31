@@ -49,10 +49,6 @@ class InvoiceController extends Controller
     {
         $order = $this->orderRepository->findOrFail($orderId);
 
-        if ($order->payment->method === 'paypal_standard') {
-            abort(404);
-        }
-
         return view('admin::sales.invoices.create', compact('order'));
     }
 

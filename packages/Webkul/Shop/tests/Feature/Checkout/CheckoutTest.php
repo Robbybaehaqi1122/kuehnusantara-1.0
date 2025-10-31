@@ -460,14 +460,6 @@ it('should store the billing address for non stockable items for guest user', fu
         ->assertJsonPath('data.payment_methods.0.method_title', 'Money Transfer')
         ->assertJsonPath('data.payment_methods.0.description', 'Money Transfer')
         ->assertJsonPath('data.payment_methods.0.sort', 2)
-        ->assertJsonPath('data.payment_methods.1.method', 'paypal_standard')
-        ->assertJsonPath('data.payment_methods.1.method_title', 'PayPal Standard')
-        ->assertJsonPath('data.payment_methods.1.description', 'PayPal Standard')
-        ->assertJsonPath('data.payment_methods.1.sort', 3)
-        ->assertJsonPath('data.payment_methods.2.method', 'paypal_smart_button')
-        ->assertJsonPath('data.payment_methods.2.method_title', 'PayPal Smart Button')
-        ->assertJsonPath('data.payment_methods.2.description', 'PayPal')
-        ->assertJsonPath('data.payment_methods.2.sort', 4)
         ->assertJsonPath('redirect', false);
 
     $this->assertModelWise([
@@ -788,14 +780,6 @@ it('should store the billing address for non stockable items for customer', func
         ->assertJsonPath('data.payment_methods.0.method_title', 'Money Transfer')
         ->assertJsonPath('data.payment_methods.0.description', 'Money Transfer')
         ->assertJsonPath('data.payment_methods.0.sort', 2)
-        ->assertJsonPath('data.payment_methods.1.method', 'paypal_standard')
-        ->assertJsonPath('data.payment_methods.1.method_title', 'PayPal Standard')
-        ->assertJsonPath('data.payment_methods.1.description', 'PayPal Standard')
-        ->assertJsonPath('data.payment_methods.1.sort', 3)
-        ->assertJsonPath('data.payment_methods.2.method', 'paypal_smart_button')
-        ->assertJsonPath('data.payment_methods.2.method_title', 'PayPal Smart Button')
-        ->assertJsonPath('data.payment_methods.2.description', 'PayPal')
-        ->assertJsonPath('data.payment_methods.2.sort', 4)
         ->assertJsonPath('redirect', false);
 
     $this->assertModelWise([
@@ -1178,14 +1162,7 @@ it('should store the shipping method for guest user', function () {
         ->assertJsonPath('payment_methods.1.method_title', 'Money Transfer')
         ->assertJsonPath('payment_methods.1.description', 'Money Transfer')
         ->assertJsonPath('payment_methods.1.sort', 2)
-        ->assertJsonPath('payment_methods.2.method', 'paypal_standard')
-        ->assertJsonPath('payment_methods.2.method_title', 'PayPal Standard')
-        ->assertJsonPath('payment_methods.2.description', 'PayPal Standard')
-        ->assertJsonPath('payment_methods.2.sort', 3)
-        ->assertJsonPath('payment_methods.3.method', 'paypal_smart_button')
-        ->assertJsonPath('payment_methods.3.method_title', 'PayPal Smart Button')
-        ->assertJsonPath('payment_methods.3.description', 'PayPal')
-        ->assertJsonPath('payment_methods.3.sort', 4);
+        ->assertJsonCount(2, 'payment_methods');
 });
 
 it('should store the shipping method for customer', function () {
@@ -1268,14 +1245,7 @@ it('should store the shipping method for customer', function () {
         ->assertJsonPath('payment_methods.1.method_title', 'Money Transfer')
         ->assertJsonPath('payment_methods.1.description', 'Money Transfer')
         ->assertJsonPath('payment_methods.1.sort', 2)
-        ->assertJsonPath('payment_methods.2.method', 'paypal_standard')
-        ->assertJsonPath('payment_methods.2.method_title', 'PayPal Standard')
-        ->assertJsonPath('payment_methods.2.description', 'PayPal Standard')
-        ->assertJsonPath('payment_methods.2.sort', 3)
-        ->assertJsonPath('payment_methods.3.method', 'paypal_smart_button')
-        ->assertJsonPath('payment_methods.3.method_title', 'PayPal Smart Button')
-        ->assertJsonPath('payment_methods.3.description', 'PayPal')
-        ->assertJsonPath('payment_methods.3.sort', 4);
+        ->assertJsonCount(2, 'payment_methods');
 });
 
 it('should fails the validation error when store the payment method for guest user', function () {
