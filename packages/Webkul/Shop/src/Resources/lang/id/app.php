@@ -542,13 +542,13 @@ return [
                 'newsletter-text'        => 'Bersiaplah untuk Newsletter Seru Kami!',
                 'order-return'           => 'Pesanan dan Pengembalian',
                 'payment-policy'         => 'Kebijakan Pembayaran',
-                'privacy-cookies-policy' => 'Kebijakan Privasi & Cookie',
-                'shipping-policy'        => 'Kebijakan Pengiriman',
-                'subscribe'              => 'Berlangganan',
-                'subscribe-newsletter'   => 'Langganan Newsletter',
-                'subscribe-stay-touch'   => 'Berlangganan untuk tetap terhubung.',
-                'whats-new'              => 'Yang Baru',
-            ],
+            'privacy-cookies-policy' => 'Kebijakan Privasi & Cookie',
+            'shipping-policy'        => 'Kebijakan Pengiriman',
+            'subscribe'              => 'Berlangganan',
+            'subscribe-newsletter'   => 'Langganan Newsletter',
+            'subscribe-stay-touch'   => 'Berlangganan untuk tetap terhubung.',
+            'whats-new'              => 'Yang Baru',
+        ],
 
             'cookie' => [
                 'index' => [

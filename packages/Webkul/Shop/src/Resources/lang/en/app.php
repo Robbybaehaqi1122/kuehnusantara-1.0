@@ -542,13 +542,13 @@ return [
                 'newsletter-text'        => 'Get Ready for our Fun Newsletter!',
                 'order-return'           => 'Order and Returns',
                 'payment-policy'         => 'Payment Policy',
-                'privacy-cookies-policy' => 'Privacy and Cookies Policy',
-                'shipping-policy'        => 'Shipping Policy',
-                'subscribe'              => 'Subscribe',
-                'subscribe-newsletter'   => 'Subscribe Newsletter',
-                'subscribe-stay-touch'   => 'Subscribe to stay in touch.',
-                'whats-new'              => 'What’s New',
-            ],
+            'privacy-cookies-policy' => 'Privacy and Cookies Policy',
+            'shipping-policy'        => 'Shipping Policy',
+            'subscribe'              => 'Subscribe',
+            'subscribe-newsletter'   => 'Subscribe Newsletter',
+            'subscribe-stay-touch'   => 'Subscribe to stay in touch.',
+            'whats-new'              => 'What’s New',
+        ],
 
             'cookie' => [
                 'index' => [
