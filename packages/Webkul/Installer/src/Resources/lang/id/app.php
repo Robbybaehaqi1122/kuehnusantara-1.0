@@ -320,7 +320,7 @@ return [
 
                 'offer-information' => [
                     'content' => [
-                        'title' => 'Diskon HINGGA 40% untuk pesanan pertama kamu BELANJA SEKARANG',
+                        'title' => 'Temukan Makanan Ringan yang kamu Mau, & Temukan Lebih Banyak lagi ',
                     ],
 
                     'name' => 'Informasi Penawaran',
