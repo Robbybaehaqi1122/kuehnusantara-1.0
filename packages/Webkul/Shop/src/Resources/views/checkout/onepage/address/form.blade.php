@@ -12,22 +12,6 @@
                 />
             </x-shop::form.control-group>
 
-            <!-- Company Name -->
-            <x-shop::form.control-group>
-                <x-shop::form.control-group.label>
-                    @lang('shop::app.checkout.onepage.address.company-name')
-                </x-shop::form.control-group.label>
-
-                <x-shop::form.control-group.control
-                    type="text"
-                    ::name="controlName + '.company_name'"
-                    ::value="address.company_name"
-                    :placeholder="trans('shop::app.checkout.onepage.address.company-name')"
-                />
-            </x-shop::form.control-group>
-
-            {!! view_render_event('bagisto.shop.checkout.onepage.address.form.company_name.after') !!}
-
             <!-- First Name -->
             <div class="grid grid-cols-2 gap-x-5 max-md:grid-cols-1">
                 <x-shop::form.control-group>
@@ -89,27 +73,6 @@
             </x-shop::form.control-group>
 
             {!! view_render_event('bagisto.shop.checkout.onepage.address.form.email.after') !!}
-
-            <!-- Vat ID -->
-            <template v-if="controlName=='billing'">
-                <x-shop::form.control-group>
-                    <x-shop::form.control-group.label>
-                        @lang('shop::app.checkout.onepage.address.vat-id')
-                    </x-shop::form.control-group.label>
-
-                    <x-shop::form.control-group.control
-                        type="text"
-                        ::name="controlName + '.vat_id'"
-                        ::value="address.vat_id"
-                        :label="trans('shop::app.checkout.onepage.address.vat-id')"
-                        :placeholder="trans('shop::app.checkout.onepage.address.vat-id')"
-                    />
-
-                    <x-shop::form.control-group.error ::name="controlName + '.vat_id'" />
-                </x-shop::form.control-group>
-
-                {!! view_render_event('bagisto.shop.checkout.onepage.address.form.vat_id.after') !!}
-            </template>
 
             <!-- Street Address -->
             <x-shop::form.control-group>
