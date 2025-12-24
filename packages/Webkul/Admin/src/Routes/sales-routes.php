@@ -36,6 +36,8 @@ Route::prefix('sales')->group(function () {
     Route::controller(OrderController::class)->prefix('orders')->group(function () {
         Route::get('', 'index')->name('admin.sales.orders.index');
 
+        Route::get('trash', 'trash')->name('admin.sales.orders.trash');
+
         Route::get('create/{cartId}', 'create')->name('admin.sales.orders.create');
 
         Route::post('create/{cartId}', 'store')->name('admin.sales.orders.store');
@@ -43,6 +45,10 @@ Route::prefix('sales')->group(function () {
         Route::get('view/{id}', 'view')->name('admin.sales.orders.view');
 
         Route::post('cancel/{id}', 'cancel')->name('admin.sales.orders.cancel');
+
+        Route::post('delete/{id}', 'destroy')->name('admin.sales.orders.delete');
+
+        Route::post('restore/{id}', 'restore')->name('admin.sales.orders.restore');
 
         Route::get('reorder/{id}', 'reorder')->name('admin.sales.orders.reorder');
 

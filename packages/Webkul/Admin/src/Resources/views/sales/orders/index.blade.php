@@ -14,6 +14,12 @@
 
             {!! view_render_event('bagisto.admin.sales.orders.create.before') !!}
 
+            @if (bouncer()->hasPermission('sales.orders.trash'))
+                <a href="{{ route('admin.sales.orders.trash') }}" class="secondary-button">
+                    @lang('admin::app.sales.orders.trash.title')
+                </a>
+            @endif
+
             @if (bouncer()->hasPermission('sales.orders.create'))
                 <button
                     class="primary-button"

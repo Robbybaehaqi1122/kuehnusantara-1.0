@@ -912,7 +912,7 @@ return [
 
     'checkout' => [
         'success' => [
-            'info'          => 'Kami akan mengirimkan detail pesanan dan informasi pelacakan ke email Anda',
+            'info'          => 'Kami akan mengirimkan detail pesanan dan informasi pelacakan ke Email & WA Anda',
             'order-id-info' => 'ID pesanan Anda adalah #:order_id',
             'thanks'        => 'Terima kasih atas pesanan Anda!',
             'title'         => 'Pesanan berhasil dilakukan',

@@ -168,6 +168,15 @@ return [
                     'view'            => 'Lihat',
                 ],
             ],
+            'trash' => [
+                'back-to-orders' => 'Kembali ke Pesanan',
+                'title'          => 'Pesanan Terhapus',
+
+                'datagrid' => [
+                    'deleted-at' => 'Dihapus Pada',
+                ],
+                'restore' => 'Pulihkan',
+            ],
 
             'create' => [
                 'add-to-cart'             => 'Tambah ke Keranjang',
@@ -364,6 +373,10 @@ return [
                 'customer-not-notified'          => ':date | Pelanggan <b>Belum Diberitahu</b>',
                 'customer-notified'              => ':date | Pelanggan <b>Sudah Diberitahu</b>',
                 'customer'                       => 'Pelanggan',
+                'delete-msg'                     => 'Apakah Anda yakin ingin menghapus pesanan ini?',
+                'delete-only-canceled-closed'     => 'Hanya pesanan dibatalkan atau ditutup yang dapat dihapus.',
+                'delete-success'                 => 'Pesanan berhasil dihapus.',
+                'delete'                         => 'Hapus',
                 'discount'                       => 'Diskon - :discount',
                 'download-pdf'                   => 'Unduh PDF',
                 'fraud'                          => 'Penipuan',
@@ -397,6 +410,10 @@ return [
                 'refund'                         => 'Pengembalian Dana',
                 'refunded'                       => 'Dikembalikan',
                 'reorder'                        => 'Pesan Lagi',
+                'restore-msg'                    => 'Apakah Anda yakin ingin memulihkan pesanan ini?',
+                'restore-success'                => 'Pesanan berhasil dipulihkan.',
+                'restore-error'                  => 'Pesanan belum dihapus.',
+                'restore'                        => 'Pulihkan',
                 'ship'                           => 'Kirim',
                 'shipment'                       => 'Pengiriman #:shipment',
                 'shipments'                      => 'Pengiriman',
@@ -4952,6 +4969,7 @@ return [
         'products'                 => 'Produk',
         'promotions'               => 'Promosi',
         'refunds'                  => 'Pengembalian Dana',
+        'restore'                  => 'Pulihkan',
         'reporting'                => 'Pelaporan',
         'reviews'                  => 'Ulasan',
         'roles'                    => 'Peran',

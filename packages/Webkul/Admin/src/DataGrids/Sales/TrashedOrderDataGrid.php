@@ -8,7 +8,7 @@ use Webkul\Sales\Models\Order;
 use Webkul\Sales\Models\OrderAddress;
 use Webkul\Sales\Repositories\OrderRepository;
 
-class OrderDataGrid extends DataGrid
+class TrashedOrderDataGrid extends DataGrid
 {
     /**
      * Prepare query builder.
@@ -33,6 +33,7 @@ class OrderDataGrid extends DataGrid
                 'orders.increment_id',
                 'orders.base_grand_total',
                 'orders.created_at',
+                'orders.deleted_at',
                 'channel_name',
                 'channel_id',
                 'status',
@@ -41,11 +42,12 @@ class OrderDataGrid extends DataGrid
                 DB::raw('CONCAT('.DB::getTablePrefix().'orders.customer_first_name, " ", '.DB::getTablePrefix().'orders.customer_last_name) as full_name'),
                 DB::raw('CONCAT('.DB::getTablePrefix().'order_address_billing.city, ", ", '.DB::getTablePrefix().'order_address_billing.state,", ", '.DB::getTablePrefix().'order_address_billing.country) as location')
             )
-            ->whereNull('orders.deleted_at')
+            ->whereNotNull('orders.deleted_at')
             ->groupBy('orders.id');
 
         $this->addFilter('full_name', DB::raw('CONCAT('.DB::getTablePrefix().'orders.customer_first_name, " ", '.DB::getTablePrefix().'orders.customer_last_name)'));
         $this->addFilter('created_at', 'orders.created_at');
+        $this->addFilter('deleted_at', 'orders.deleted_at');
 
         return $queryBuilder;
     }
@@ -172,9 +174,6 @@ class OrderDataGrid extends DataGrid
             'sortable'   => true,
         ]);
 
-        /**
-         * Searchable dropdown sample. In testing phase.
-         */
         $this->addColumn([
             'index'      => 'customer_email',
             'label'      => trans('admin::app.sales.orders.index.datagrid.email'),
@@ -196,7 +195,12 @@ class OrderDataGrid extends DataGrid
             'type'       => 'string',
             'exportable' => false,
             'closure'    => function ($value) {
-                $order = app(OrderRepository::class)->with('items')->find($value->id);
+                $order = app(OrderRepository::class)
+                    ->getModel()
+                    ->newQuery()
+                    ->withTrashed()
+                    ->with('items')
+                    ->find($value->id);
 
                 return view('admin::sales.orders.items', compact('order'))->render();
             },
@@ -205,6 +209,15 @@ class OrderDataGrid extends DataGrid
         $this->addColumn([
             'index'           => 'created_at',
             'label'           => trans('admin::app.sales.orders.index.datagrid.date'),
+            'type'            => 'date',
+            'filterable'      => true,
+            'filterable_type' => 'date_range',
+            'sortable'        => true,
+        ]);
+
+        $this->addColumn([
+            'index'           => 'deleted_at',
+            'label'           => trans('admin::app.sales.orders.trash.datagrid.deleted-at'),
             'type'            => 'date',
             'filterable'      => true,
             'filterable_type' => 'date_range',
@@ -226,6 +239,17 @@ class OrderDataGrid extends DataGrid
                 'method' => 'GET',
                 'url'    => function ($row) {
                     return route('admin.sales.orders.view', $row->id);
+                },
+            ]);
+        }
+
+        if (bouncer()->hasPermission('sales.orders.restore')) {
+            $this->addAction([
+                'icon'   => 'icon-repeat',
+                'title'  => trans('admin::app.sales.orders.trash.restore'),
+                'method' => 'POST',
+                'url'    => function ($row) {
+                    return route('admin.sales.orders.restore', $row->id);
                 },
             ]);
         }

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Webkul\Checkout\Models\CartProxy;
 use Webkul\Sales\Contracts\Order as OrderContract;
 use Webkul\Sales\Database\Factories\OrderFactory;
@@ -16,13 +17,14 @@ use Webkul\Sales\Database\Factories\OrderFactory;
 class Order extends Model implements OrderContract
 {
     use HasFactory;
+    use SoftDeletes;
 
     /**
      * Dates.
      *
      * @var array
      */
-    protected $dates = ['created_at'];
+    protected $dates = ['created_at', 'deleted_at'];
 
     /**
      * The accessors to append to the model's array form.

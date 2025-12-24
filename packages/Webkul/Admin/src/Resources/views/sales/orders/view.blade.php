@@ -72,7 +72,8 @@
             @endif
 
             @if (
-                $order->canCancel()
+                ! $order->trashed()
+                && $order->canCancel()
                 && bouncer()->hasPermission('sales.orders.cancel')
             )
                <form
@@ -101,6 +102,73 @@
 
                     <a href="javascript:void(0);">
                         @lang('admin::app.sales.orders.view.cancel')
+                    </a>
+                </div>
+            @endif
+
+            @if (
+                $order->trashed()
+                && bouncer()->hasPermission('sales.orders.restore')
+            )
+                <form
+                    method="POST"
+                    ref="restoreOrderForm"
+                    action="{{ route('admin.sales.orders.restore', $order->id) }}"
+                >
+                    @csrf
+                </form>
+
+                <div
+                    class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    @click="$emitter.emit('open-confirm-modal', {
+                        message: '@lang('admin::app.sales.orders.view.restore-msg')',
+                        agree: () => {
+                            this.$refs['restoreOrderForm'].submit()
+                        }
+                    })"
+                >
+                    <span
+                        class="icon-repeat text-2xl"
+                        role="presentation"
+                        tabindex="0"
+                    >
+                    </span>
+
+                    <a href="javascript:void(0);">
+                        @lang('admin::app.sales.orders.view.restore')
+                    </a>
+                </div>
+            @elseif (
+                ! $order->trashed()
+                && in_array($order->status, [\Webkul\Sales\Models\Order::STATUS_CANCELED, \Webkul\Sales\Models\Order::STATUS_CLOSED])
+                && bouncer()->hasPermission('sales.orders.delete')
+            )
+                <form
+                    method="POST"
+                    ref="deleteOrderForm"
+                    action="{{ route('admin.sales.orders.delete', $order->id) }}"
+                >
+                    @csrf
+                </form>
+
+                <div
+                    class="transparent-button px-1 py-1.5 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800"
+                    @click="$emitter.emit('open-confirm-modal', {
+                        message: '@lang('admin::app.sales.orders.view.delete-msg')',
+                        agree: () => {
+                            this.$refs['deleteOrderForm'].submit()
+                        }
+                    })"
+                >
+                    <span
+                        class="icon-delete text-2xl"
+                        role="presentation"
+                        tabindex="0"
+                    >
+                    </span>
+
+                    <a href="javascript:void(0);">
+                        @lang('admin::app.sales.orders.view.delete')
                     </a>
                 </div>
             @endif

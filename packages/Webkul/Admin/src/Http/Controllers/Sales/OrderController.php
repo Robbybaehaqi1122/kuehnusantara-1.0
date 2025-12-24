@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Webkul\Admin\DataGrids\Sales\TrashedOrderDataGrid;
 use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Admin\Http\Resources\AddressResource;
@@ -13,6 +14,7 @@ use Webkul\Admin\Http\Resources\CartResource;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Checkout\Repositories\CartRepository;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
+use Webkul\Sales\Models\Order;
 use Webkul\Sales\Repositories\OrderCommentRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 use Webkul\Sales\Transformers\OrderResource;
@@ -45,6 +47,20 @@ class OrderController extends Controller
         $groups = $this->customerGroupRepository->findWhere([['code', '<>', 'guest']]);
 
         return view('admin::sales.orders.index', compact('groups'));
+    }
+
+    /**
+     * Display a listing of the trashed orders.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function trash()
+    {
+        if (request()->ajax()) {
+            return datagrid(TrashedOrderDataGrid::class)->process();
+        }
+
+        return view('admin::sales.orders.trash');
     }
 
     /**
@@ -121,7 +137,7 @@ class OrderController extends Controller
      */
     public function view(int $id)
     {
-        $order = $this->orderRepository->findOrFail($id);
+        $order = $this->orderRepository->getModel()->withTrashed()->findOrFail($id);
 
         return view('admin::sales.orders.view', compact('order'));
     }
@@ -167,6 +183,50 @@ class OrderController extends Controller
         } else {
             session()->flash('error', trans('admin::app.sales.orders.view.create-error'));
         }
+
+        return redirect()->route('admin.sales.orders.view', $id);
+    }
+
+    /**
+     * Soft delete the specified order.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(int $id)
+    {
+        $order = $this->orderRepository->findOrFail($id);
+
+        if (! in_array($order->status, [Order::STATUS_CANCELED, Order::STATUS_CLOSED])) {
+            session()->flash('error', trans('admin::app.sales.orders.view.delete-only-canceled-closed'));
+
+            return redirect()->route('admin.sales.orders.view', $id);
+        }
+
+        $order->delete();
+
+        session()->flash('success', trans('admin::app.sales.orders.view.delete-success'));
+
+        return redirect()->route('admin.sales.orders.view', $id);
+    }
+
+    /**
+     * Restore the specified soft deleted order.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(int $id)
+    {
+        $order = $this->orderRepository->getModel()->withTrashed()->findOrFail($id);
+
+        if (! $order->trashed()) {
+            session()->flash('error', trans('admin::app.sales.orders.view.restore-error'));
+
+            return redirect()->route('admin.sales.orders.view', $id);
+        }
+
+        $order->restore();
+
+        session()->flash('success', trans('admin::app.sales.orders.view.restore-success'));
 
         return redirect()->route('admin.sales.orders.view', $id);
     }

@@ -37,6 +37,7 @@ class OrderDataGrid extends DataGrid
                 DB::raw('CONCAT('.$tablePrefix.'order_address_billing.first_name, " ", '.$tablePrefix.'order_address_billing.last_name) as full_name'),
                 DB::raw('CONCAT('.$tablePrefix.'order_address_billing.address, ", ", '.$tablePrefix.'order_address_billing.city,", ", '.$tablePrefix.'order_address_billing.state, ", ", '.$tablePrefix.'order_address_billing.country) as location')
             )
+            ->whereNull('orders.deleted_at')
             ->where('orders.customer_id', request()->route('id'));
 
         $this->addFilter('full_name', DB::raw('CONCAT('.$tablePrefix.'orders.customer_first_name, " ", '.$tablePrefix.'orders.customer_last_name)'));

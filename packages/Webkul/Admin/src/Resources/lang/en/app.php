@@ -168,6 +168,15 @@ return [
                     'view'            => 'View',
                 ],
             ],
+            'trash' => [
+                'back-to-orders' => 'Back to Orders',
+                'title'          => 'Trashed Orders',
+
+                'datagrid' => [
+                    'deleted-at' => 'Deleted At',
+                ],
+                'restore' => 'Restore',
+            ],
 
             'create' => [
                 'add-to-cart'             => 'Add to Cart',
@@ -364,6 +373,10 @@ return [
                 'customer-not-notified'          => ':date | Customer <b>Not Notified</b>',
                 'customer-notified'              => ':date | Customer <b>Notified</b>',
                 'customer'                       => 'Customer',
+                'delete-msg'                     => 'Are you sure you want to delete this order?',
+                'delete-only-canceled-closed'     => 'Only canceled or closed orders can be deleted.',
+                'delete-success'                 => 'Order deleted successfully.',
+                'delete'                         => 'Delete',
                 'discount'                       => 'Discount - :discount',
                 'download-pdf'                   => 'Download PDF',
                 'fraud'                          => 'Fraud',
@@ -397,6 +410,10 @@ return [
                 'refund'                         => 'Refund',
                 'refunded'                       => 'Refunded',
                 'reorder'                        => 'Reorder',
+                'restore-msg'                    => 'Are you sure you want to restore this order?',
+                'restore-success'                => 'Order restored successfully.',
+                'restore-error'                  => 'Order is not deleted.',
+                'restore'                        => 'Restore',
                 'ship'                           => 'Ship',
                 'shipment'                       => 'Shipment #:shipment',
                 'shipments'                      => 'Shipments',
@@ -4952,6 +4969,7 @@ return [
         'products'                 => 'Products',
         'promotions'               => 'Promotions',
         'refunds'                  => 'Refunds',
+        'restore'                  => 'Restore',
         'reporting'                => 'Reporting',
         'reviews'                  => 'Reviews',
         'roles'                    => 'Roles',
