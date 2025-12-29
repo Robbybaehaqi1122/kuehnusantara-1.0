@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Webkul\Checkout\Models\CartProxy;
 use Webkul\Sales\Contracts\Order as OrderContract;
@@ -17,6 +18,7 @@ use Webkul\Sales\Database\Factories\OrderFactory;
 class Order extends Model implements OrderContract
 {
     use HasFactory;
+    use Prunable;
     use SoftDeletes;
 
     /**
@@ -99,6 +101,15 @@ class Order extends Model implements OrderContract
         self::STATUS_CLOSED          => 'Closed',
         self::STATUS_FRAUD           => 'Fraud',
     ];
+
+    /**
+     * Prune soft deleted orders after 30 days.
+     */
+    public function prunable()
+    {
+        return static::onlyTrashed()
+            ->where('deleted_at', '<=', now()->subDays(30));
+    }
 
     /**
      * Get the order items record associated with the order.

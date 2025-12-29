@@ -50,6 +50,8 @@ Route::prefix('sales')->group(function () {
 
         Route::post('restore/{id}', 'restore')->name('admin.sales.orders.restore');
 
+        Route::post('prune', 'prune')->name('admin.sales.orders.prune');
+
         Route::get('reorder/{id}', 'reorder')->name('admin.sales.orders.reorder');
 
         Route::post('comment/{order_id}', 'comment')->name('admin.sales.orders.comment');

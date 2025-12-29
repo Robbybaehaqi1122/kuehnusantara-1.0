@@ -10,6 +10,14 @@
         </p>
 
         <div class="flex items-center gap-x-2.5">
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+                @lang('admin::app.sales.orders.trash.last-run'):
+                {{ $lastRunAt ? $lastRunAt : trans('admin::app.sales.orders.trash.never') }}
+                @if (! is_null($lastDeletedCount))
+                    ({{ $lastDeletedCount }})
+                @endif
+            </p>
+
             <a href="{{ route('admin.sales.orders.index') }}" class="secondary-button">
                 @lang('admin::app.sales.orders.trash.back-to-orders')
             </a>

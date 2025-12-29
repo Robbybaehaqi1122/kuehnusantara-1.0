@@ -175,6 +175,11 @@ return [
                 'datagrid' => [
                     'deleted-at' => 'Dihapus Pada',
                 ],
+                'last-run'     => 'Terakhir dibersihkan',
+                'never'        => 'Belum pernah',
+                'prune-btn'    => 'Jalankan hapus permanen sekarang',
+                'prune-msg'    => 'Yakin ingin menghapus permanen pesanan yang lebih dari 30 hari?',
+                'prune-success'=> 'Hapus permanen selesai. :count pesanan dihapus.',
                 'restore' => 'Pulihkan',
             ],
 
@@ -4969,6 +4974,7 @@ return [
         'products'                 => 'Produk',
         'promotions'               => 'Promosi',
         'refunds'                  => 'Pengembalian Dana',
+        'prune'                    => 'Bersihkan',
         'restore'                  => 'Pulihkan',
         'reporting'                => 'Pelaporan',
         'reviews'                  => 'Ulasan',

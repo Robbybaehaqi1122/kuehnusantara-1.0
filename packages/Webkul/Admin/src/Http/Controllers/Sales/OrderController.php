@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Artisan;
 use Webkul\Admin\DataGrids\Sales\TrashedOrderDataGrid;
 use Webkul\Admin\DataGrids\Sales\OrderDataGrid;
 use Webkul\Admin\Http\Controllers\Controller;
@@ -60,7 +62,10 @@ class OrderController extends Controller
             return datagrid(TrashedOrderDataGrid::class)->process();
         }
 
-        return view('admin::sales.orders.trash');
+        $lastRunAt = Cache::get('orders.prune.last_run_at');
+        $lastDeletedCount = Cache::get('orders.prune.last_deleted_count');
+
+        return view('admin::sales.orders.trash', compact('lastRunAt', 'lastDeletedCount'));
     }
 
     /**
@@ -229,6 +234,32 @@ class OrderController extends Controller
         session()->flash('success', trans('admin::app.sales.orders.view.restore-success'));
 
         return redirect()->route('admin.sales.orders.view', $id);
+    }
+
+    /**
+     * Manually prune soft deleted orders older than 30 days.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function prune()
+    {
+        $cutoff = now()->subDays(30);
+
+        $toPrune = $this->orderRepository->getModel()
+            ->onlyTrashed()
+            ->where('deleted_at', '<=', $cutoff)
+            ->count();
+
+        Artisan::call('model:prune', ['--model' => Order::class]);
+
+        Cache::put('orders.prune.last_run_at', now()->toDateTimeString());
+        Cache::put('orders.prune.last_deleted_count', $toPrune);
+
+        session()->flash('success', trans('admin::app.sales.orders.trash.prune-success', [
+            'count' => $toPrune,
+        ]));
+
+        return redirect()->route('admin.sales.orders.trash');
     }
 
     /**

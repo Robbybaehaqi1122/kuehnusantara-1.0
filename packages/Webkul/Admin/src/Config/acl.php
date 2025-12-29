@@ -66,6 +66,11 @@ return [
         'route' => 'admin.sales.orders.trash',
         'sort'  => 6,
     ], [
+        'key'   => 'sales.orders.prune',
+        'name'  => 'admin::app.acl.prune',
+        'route' => 'admin.sales.orders.prune',
+        'sort'  => 7,
+    ], [
         'key'   => 'sales.invoices',
         'name'  => 'admin::app.acl.invoices',
         'route' => 'admin.sales.invoices.index',

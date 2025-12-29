@@ -175,6 +175,11 @@ return [
                 'datagrid' => [
                     'deleted-at' => 'Deleted At',
                 ],
+                'last-run'     => 'Last pruned at',
+                'never'        => 'Never',
+                'prune-btn'    => 'Run permanent delete now',
+                'prune-msg'    => 'Are you sure you want to permanently delete orders older than 30 days?',
+                'prune-success'=> 'Permanent delete finished. Removed :count orders.',
                 'restore' => 'Restore',
             ],
 
@@ -4969,6 +4974,7 @@ return [
         'products'                 => 'Products',
         'promotions'               => 'Promotions',
         'refunds'                  => 'Refunds',
+        'prune'                    => 'Prune',
         'restore'                  => 'Restore',
         'reporting'                => 'Reporting',
         'reviews'                  => 'Reviews',
